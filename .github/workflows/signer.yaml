@@ -13,7 +13,10 @@ on:
         required: true
         type: string
         default: intergral/grafana-deep-panel
-
+      ref:
+        description: The repository ref to use to sign a plugin
+        required: true
+        type: string
 
 jobs:
   release:
@@ -24,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: master
+          ref: ${{ inputs.ref }}
           repository: ${{ inputs.repository }}
 
       - name: Setup Node.js environment
@@ -95,8 +98,6 @@ jobs:
           echo "archive-unsigned=${GRAFANA_PLUGIN_ARTIFACT_UNSIGNED}" >> $GITHUB_OUTPUT
           echo "archive-checksum=${GRAFANA_PLUGIN_ARTIFACT_CHECKSUM}" >> $GITHUB_OUTPUT
 
-          echo "github-tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-
       - name: Read changelog
         id: changelog
         run: |
@@ -104,7 +105,7 @@ jobs:
           echo "path=release_notes.md" >> $GITHUB_OUTPUT
 
       - name: Check package version
-        run: if [ "v${{ steps.metadata.outputs.plugin-version }}" != "${{ steps.metadata.outputs.github-tag }}" ]; then printf "\033[0;31mPlugin version doesn't match tag name\033[0m\n"; exit 1; fi
+        run: if [ "v${{ steps.metadata.outputs.plugin-version }}" != "${{ inputs.ref }}" ]; then printf "\033[0;31mPlugin version doesn't match tag name\033[0m\n"; exit 1; fi
 
       - name: Package plugin
         id: package-plugin
