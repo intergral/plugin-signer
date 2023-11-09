@@ -6,7 +6,7 @@ on:
       rootUrls:
         description: The root urls to use to generate the signed artifact
         required: true
-        default: http://localhost:3000
+        default: https://grafana-beta.staging.fusionreactor.io/g/,https://app.fusionreactor.io/g/,https://grafusion-admin.fusionreactor.io/,https://app.staging.fusionreactor.io/g/,https://grafusion-admin.staging.fusionreactor.io/,http://localhost:3000/
         type: string
       repository:
         description: The repository to use to sign a plugin
@@ -33,7 +33,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           cache: 'yarn'
 
       - name: Setup Go environment
