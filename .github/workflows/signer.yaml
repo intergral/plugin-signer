@@ -6,7 +6,7 @@ on:
       rootUrls:
         description: The root urls to use to generate the signed artifact
         required: true
-        default: https://grafana-beta.staging.fusionreactor.io/g/,https://app.fusionreactor.io/g/,https://grafusion-admin.fusionreactor.io/,https://app.staging.fusionreactor.io/g/,https://grafusion-admin.staging.fusionreactor.io/,http://localhost:3000/,https://explore.staging.streamhippo.io,https://grafusion-admin.staging.streamhippo.io,https://explore.production.streamhippo.io,https://grafusion-admin.production.streamhippo.io
+        default: https://grafana-beta.staging.fusionreactor.io/g/,https://app.fusionreactor.io/g/,https://grafusion-admin.fusionreactor.io/,https://app.staging.fusionreactor.io/g/,https://grafusion-admin.staging.fusionreactor.io/,http://localhost:3000/,https://app.staging.streamhippo.io/g/,https://grafusion-admin.staging.streamhippo.io/g/,https://app.production.streamhippo.io/g/,https://grafusion-admin.production.streamhippo.io/g/
         type: string
       repository:
         description: The repository to use to sign a plugin
